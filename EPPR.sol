@@ -30,6 +30,7 @@ contract EPPR {
         returns (bool) 
     {
         owner = _to;
+        emit NewTransfer(msg.sender, _to, block.timestamp); // Lanzamos un evento llamado "New Transfer"
         return true;
     }
     // Función pública: No tiene mods, cualquier persona puede leer esta info, imprime la dirección actual definida como "owner"
@@ -65,4 +66,10 @@ contract EPPR {
         require(_id != "", "Empty 32Bytes");
         _;
     }
+    // Evento: 
+    event NewTransfer(
+        address indexed senderAddress,
+        address indexed receiverAddress,
+        uint256 stamp
+    );
 }
