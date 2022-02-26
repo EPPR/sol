@@ -25,7 +25,7 @@ contract EPPR {
     function transferContract(address _to) 
         public
         onlyOwner()
-        throwIfIsOwnerBytes32(_to)
+        throwIfIsOwnerAddress(_to)
         returns (bool) 
     {
         owner = _to;
@@ -45,7 +45,7 @@ contract EPPR {
         _; // Este "_;" se llama "merge wildcard" y sirve para unir las dos funciones en cadena.
     }
     // Mod para cancelar la transacción en caso que la cuenta sea el dueño de este contrato.
-    modifier throwIfIsOwnerBytes32(address _id) {
+    modifier throwIfIsOwnerAddress(address _id) {
         require(_id != owner, "Invalid transfer destination.");
         _;
     }
